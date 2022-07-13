@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "xracer.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+  ],
+  "client": [
+    "MinecraftClientMixin",
+    "KeyboardMixin",
+    "RenderMixin",
+    "ItemRendererMixin",
+    "SimpleOptionMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
