@@ -58,7 +58,10 @@ public class Hud {
 			MenuGUI.rendermods.add(mod);
 		}
 		if(category == Category.player){
-
+			MenuGUI.playermods.add(mod);
+		}
+		if(category == Category.world){
+			MenuGUI.worldmods.add(mod);
 		}
 
 	}
