@@ -3,6 +3,9 @@ package xracer.module;
 import java.util.ArrayList;
 import java.util.List;
 
+import xracer.module.modules.armor;
+import xracer.module.modules.keys;
+import xracer.module.modules.radar;
 import xracer.module.modules.sprint;
 
 
@@ -38,7 +41,9 @@ public class ModuleManager {
 
 	private void addModules() {
 		modules.add(new sprint());
-		modules.add(new viewmodel());
+		modules.add(new radar());
+		modules.add(new keys());
+		modules.add(new armor());
 	}
 	
 	

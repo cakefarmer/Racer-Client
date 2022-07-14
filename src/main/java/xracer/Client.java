@@ -98,6 +98,7 @@ public class Client implements ModInitializer{
 			if(key == GLFW.GLFW_KEY_RIGHT_SHIFT) {
 				mc.setScreen(MenuGUI.INSTANCE);
 				MenuGUI.INSTANCE.menu_button = true;
+
 			}
 		}
 		Hud.pressed(key, action);

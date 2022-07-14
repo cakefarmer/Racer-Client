@@ -8,7 +8,7 @@ import xracer.module.Mod.Category;
 public class sprint extends Mod{
 
 	public sprint() {
-		super("Toggle Sprint", "Toggles Sprint", Category.client);
+		super("Toggle Sprint", "Toggles Sprint", Category.player);
 		this.setKey(GLFW.GLFW_KEY_R);
 	}
 	
