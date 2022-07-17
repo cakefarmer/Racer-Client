@@ -43,7 +43,7 @@ public class ModuleManager {
 	}
 	int width = MinecraftClient.getInstance().getWindow().getScaledWidth();
 	int height = MinecraftClient.getInstance().getWindow().getScaledHeight();
-	int i = 0;
+
 	public void drawCategory(MatrixStack matrices, Mod.Category category, int index){
 		int i = 0;
 		for(Mod mod : ModuleManager.instance.getModules()){
