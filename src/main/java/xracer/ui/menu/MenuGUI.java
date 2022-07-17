@@ -9,6 +9,8 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import xracer.Client;
+import xracer.module.Mod;
+import xracer.module.ModuleManager;
 import xracer.ui.Hud;
 
 
@@ -71,13 +73,16 @@ public class MenuGUI extends Screen {
 			mc.textRenderer.draw(matrices, "render", width / 2 - 120, height / 2 - 40, -1);
 			mc.textRenderer.draw(matrices, "player", width / 2 - 120, height / 2 - 0, -1);
 			if (world == true) {
-				mc.textRenderer.draw(matrices, "Radar", width / 2 + 20, height / 2 - 80, color_radar);
+			//	mc.textRenderer.draw(matrices, "Radar", width / 2 + 20, height / 2 - 80, color_radar);
+				ModuleManager.instance.drawCategory(matrices, Mod.Category.world, 15);
 			}
 			if (render == true) {
-				mc.textRenderer.draw(matrices, "Keystrokes", width / 2 + 20, height / 2 - 80, color_keys);
+			//	mc.textRenderer.draw(matrices, "Keystrokes", width / 2 + 20, height / 2 - 80, color_keys);
+				ModuleManager.instance.drawCategory(matrices, Mod.Category.render, 15);
 			}
 			if (player == true) {
-				mc.textRenderer.draw(matrices, "Armor Display", width / 2 + 20, height / 2 - 80, color_armor);
+				ModuleManager.instance.drawCategory(matrices, Mod.Category.player, 15);
+			//	mc.textRenderer.draw(matrices, "Armor Display", width / 2 + 20, height / 2 - 80, color_armor);
 			}
 	}
 

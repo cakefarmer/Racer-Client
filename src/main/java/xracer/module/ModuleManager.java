@@ -3,6 +3,9 @@ package xracer.module;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.util.math.MatrixStack;
 import xracer.module.modules.armor;
 import xracer.module.modules.keys;
 import xracer.module.modules.radar;
@@ -38,7 +41,20 @@ public class ModuleManager {
 		}
 		return enabled;
 	}
+	int width = MinecraftClient.getInstance().getWindow().getScaledWidth();
+	int height = MinecraftClient.getInstance().getWindow().getScaledHeight();
+	int i = 0;
+	public void drawCategory(MatrixStack matrices, Mod.Category category, int index){
+		int i = 0;
+		for(Mod mod : ModuleManager.instance.getModules()){
+			TextRenderer t = MinecraftClient.getInstance().textRenderer;
+			if(mod.getCategory() == category){
+				i = i+index;
+				t.draw(matrices, mod.getName(), width / 2 + 20, height / 2 - 80 + i, -1);
 
+			}
+		}
+	}
 	private void addModules() {
 		modules.add(new sprint());
 		modules.add(new radar());
