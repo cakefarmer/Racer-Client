@@ -94,6 +94,12 @@ public class MenuGUI extends Screen {
 			player = false;
 			Client.INSTANCE.LOGGER.info("ez");
 		}
+		if(mx > (width / 2 - 122) && mx <  (width / 2 - 120 + textRenderer.getWidth("player")) && my > (height / 2 - 1) && my < (height /2 + mc.textRenderer.fontHeight)) {
+			world = false;
+			render = false;
+			player = true;
+			Client.INSTANCE.LOGGER.info("ez");
+		}
 
 		if (mx > (width / 2 - 40) && mx < (width / 2 + 40) && my > (height / 2 - 20) && my < (height / 2 + 20)) {
 
@@ -113,6 +119,7 @@ public class MenuGUI extends Screen {
 
 				}
 			}
+		}
 			if (mx > (width / 2 - 97) && mx < (width / 2 - 92 + textRenderer.getWidth("Keystrokes")) && my > (height / 2 - 90) && my < (height / 2 - 83)) {
 				if (render == true) {
 					if (color_keys == -1) {
@@ -136,7 +143,7 @@ public class MenuGUI extends Screen {
 					}
 				}
 			}
-		}
+
 
 			return super.mouseClicked(mx, my, button);
 		}
