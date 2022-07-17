@@ -43,17 +43,19 @@ public class MenuGUI extends Screen {
 		int width = MinecraftClient.getInstance().getWindow().getScaledWidth();
 		int height = MinecraftClient.getInstance().getWindow().getScaledHeight();
 		if (menu_button == true) {
-			if(isdisplayingmenu == false) {
-				DrawableHelper.fill(matrices, width / 2 - 40, height / 2 - 20, width / 2 + 40, height / 2 + 20, 0x50000000);
-				mc.textRenderer.draw(matrices, "Menu", width / 2 - (mc.textRenderer.getWidth("Menu") / 2), height / 2 - (mc.textRenderer.fontHeight / 2), -1);
+			if (mc.player != null) {
+				if (isdisplayingmenu == false) {
+					DrawableHelper.fill(matrices, width / 2 - 40, height / 2 - 20, width / 2 + 40, height / 2 + 20, 0x50000000);
+					mc.textRenderer.draw(matrices, "Menu", width / 2 - (mc.textRenderer.getWidth("Menu") / 2), height / 2 - (mc.textRenderer.fontHeight / 2), -1);
+				}
+			}
+		}
+			if (menu_button == false) {
+				isdisplayingmenu = true;
+				mainmenu(matrices);
 			}
 		}
 
-		if (menu_button == false) {
-			isdisplayingmenu = true;
-			mainmenu(matrices);
-		}
-	}
 
 	public static int color_radar = 0x997fff00;
 	public static int color_keys = 0x997fff00;
