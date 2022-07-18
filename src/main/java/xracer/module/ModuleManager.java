@@ -41,20 +41,26 @@ public class ModuleManager {
 		}
 		return enabled;
 	}
-	int width = MinecraftClient.getInstance().getWindow().getScaledWidth();
-	int height = MinecraftClient.getInstance().getWindow().getScaledHeight();
+
 
 	public void drawCategory(MatrixStack matrices, Mod.Category category, int index){
+		int width = MinecraftClient.getInstance().getWindow().getScaledWidth();
+		int height = MinecraftClient.getInstance().getWindow().getScaledHeight();
 		int i = 0;
+
 		for(Mod mod : ModuleManager.instance.getModules()){
 			TextRenderer t = MinecraftClient.getInstance().textRenderer;
 			if(mod.getCategory() == category){
-				i = i+index;
 				t.draw(matrices, mod.getName(), width / 2 + 20, height / 2 - 80 + i, -1);
+				mod.setX(20);
+				mod.setY(80 - i);
+				i = i+index;
+
 
 			}
 		}
 	}
+
 	private void addModules() {
 		modules.add(new sprint());
 		modules.add(new radar());

@@ -68,6 +68,25 @@ public class Mod {
 		return category;
 	}
 
+	private int x;
+	private int y;
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int xe){
+		x = xe;
+	}
+
+	public void setY(int ye){
+		y = ye;
+	}
+
+	public int getY() {
+		return y;
+	}
+
 	private String name;
 	private String description;
 	private int key;

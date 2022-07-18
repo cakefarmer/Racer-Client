@@ -49,7 +49,7 @@ public class Hud {
 				mc.textRenderer.drawWithShadow(matrices, mod.getName(), (sWidth / 2) - (mc.textRenderer.getWidth(mod.getName()) / 2), 10 + (index * mc.textRenderer.fontHeight), -1);
 				index++;
 			} else {
-				Client.INSTANCE.LOGGER.info("not sprint lol");
+
 			}
 		}
 
@@ -74,7 +74,7 @@ public class Hud {
 	static int color3 = 0x44000000;
 
 	public static void drawKeys(MatrixStack matrices) {
-		if (ModuleManager.instance.getModule("keys").isEnabled() == true) {
+		if (ModuleManager.instance.getModule("Keystrokes").isEnabled() == true) {
 			int sWidth = mc.getWindow().getScaledWidth();
 			int sHeight = mc.getWindow().getScaledHeight();
 			DrawableHelper.fill(matrices, sWidth - 10, sHeight - 10, sWidth - 40, sHeight - 40, color);
@@ -137,7 +137,7 @@ public class Hud {
 		int width = mc.getWindow().getScaledWidth();
 		int height = mc.getWindow().getScaledHeight();
 		Inventory inv = mc.player.getInventory();
-		if (ModuleManager.instance.getModule("armor").isEnabled() == true) {
+		if (ModuleManager.instance.getModule("Armor Display").isEnabled() == true) {
 			draw.drawItem(MinecraftClient.getInstance().player.getInventory().armor.get(3), 5, index, 1);
 			if (MinecraftClient.getInstance().player.getInventory().armor.get(3).getMaxDamage() != 0) {
 				mc.textRenderer.draw(matrices, "" + (MinecraftClient.getInstance().player.getInventory().armor.get(3).getMaxDamage() - MinecraftClient.getInstance().player.getInventory().armor.get(3).getDamage()), 25, index + 4.5f, -1);
@@ -171,7 +171,7 @@ public class Hud {
 		int index = 20;
 		int width = MinecraftClient.getInstance().getWindow().getScaledWidth();
 		TextRenderer tr = mc.textRenderer;
-		if (ModuleManager.instance.getModule("radar").isEnabled() == true) {
+		if (ModuleManager.instance.getModule("Radar").isEnabled() == true) {
 			for (PlayerEntity plr : mc.world.getPlayers()) {
 				if (plr != mc.player) {
 					if (plr.distanceTo(mc.player) <= 50) {

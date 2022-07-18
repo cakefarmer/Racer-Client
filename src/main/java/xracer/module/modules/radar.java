@@ -6,7 +6,7 @@ public class radar extends Mod{
 
 
     public radar() {
-        super("radar", "radar", Category.world);
+        super("Radar", "radar", Category.world);
     }
 
 

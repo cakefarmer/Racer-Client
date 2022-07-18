@@ -63,7 +63,7 @@ public class MenuGUI extends Screen {
 	public static int color_keys = 0x997fff00;
 	public static int color_armor = 0x997fff00;
 	public static boolean isdisplayingmenu = false;
-
+	public static Mod.Category currentCategory;
 	public void mainmenu(MatrixStack matrices) {
 
 		//	DrawableHelper.fill(matrices, 200 , 50, width - 200, height-50, 0x44);
@@ -87,22 +87,35 @@ public class MenuGUI extends Screen {
 	}
 
 	public boolean mouseClicked(double mx, double my, int button) {
+	//width / 2 + 20, height / 2 - 80
+		for(Mod m : ModuleManager.instance.getModules()) {
+			if (m.getCategory() == currentCategory) {
+				if (mx > (width / 2 + m.getX()) && mx < (width / 2 + m.getX() + textRenderer.getWidth(m.getName())) && my > (height / 2 - m.getY() - 1) && my < (height / 2 - m.getY() + mc.textRenderer.fontHeight)) {
+					m.toggle();
+					Client.INSTANCE.LOGGER.info("Mod Clicked " + m.getName() + " | " + m.getY());
+				}
+			}
+		}
+
 		if(mx > (width / 2 - 122) && mx <  (width / 2 - 120 + textRenderer.getWidth("render")) && my > (height / 2 - 41) && my < (height /2 - 37 + mc.textRenderer.fontHeight)) {
 			world = false;
 			render = true;
 			player = false;
+			currentCategory = Mod.Category.render;
 			Client.INSTANCE.LOGGER.info("ez");
 		}
 		if(mx > (width / 2 - 122) && mx <  (width / 2 - 120 + textRenderer.getWidth("world")) && my > (height / 2 - 81) && my < (height /2 - 77 + mc.textRenderer.fontHeight)) {
 			world = true;
 			render = false;
 			player = false;
+			currentCategory = Mod.Category.world;
 			Client.INSTANCE.LOGGER.info("ez");
 		}
 		if(mx > (width / 2 - 122) && mx <  (width / 2 - 120 + textRenderer.getWidth("player")) && my > (height / 2 - 1) && my < (height /2 + mc.textRenderer.fontHeight)) {
 			world = false;
 			render = false;
 			player = true;
+			currentCategory = Mod.Category.player;
 			Client.INSTANCE.LOGGER.info("ez");
 		}
 
@@ -113,41 +126,7 @@ public class MenuGUI extends Screen {
 
 			}
 		}
-		if (mx > (width / 2 - 132) && mx < (width / 2 - 129 + textRenderer.getWidth("Radar")) && my > (height / 2 - 90) && my < (height / 2 - 83)) {
-			if (world == true) {
-				if (color_radar == -1) {
-					color_radar = 0x997fff00;
-					Hud.radar = true;
-				} else {
-					Hud.radar = false;
-					color_radar = -1;
 
-				}
-			}
-		}
-			if (mx > (width / 2 - 97) && mx < (width / 2 - 92 + textRenderer.getWidth("Keystrokes")) && my > (height / 2 - 90) && my < (height / 2 - 83)) {
-				if (render == true) {
-					if (color_keys == -1) {
-						color_keys = 0x997fff00;
-						Hud.keystrokes = true;
-					} else {
-						Hud.keystrokes = false;
-						color_keys = -1;
-					}
-				}
-			}
-
-			if (mx > (width / 2 - 33) && mx < (width / 2 - 31 + textRenderer.getWidth("Armor Display")) && my > (height / 2 - 90) && my < (height / 2 - 83)) {
-				if (player == true) {
-					if (color_armor == -1) {
-						color_armor = 0x997fff00;
-						Hud.armor = true;
-					} else {
-						Hud.armor = false;
-						color_armor = -1;
-					}
-				}
-			}
 
 
 			return super.mouseClicked(mx, my, button);

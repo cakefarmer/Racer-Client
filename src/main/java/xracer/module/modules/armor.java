@@ -4,6 +4,6 @@ import xracer.module.Mod;
 
 public class armor extends Mod {
     public armor() {
-        super("armor", "display", Category.player);
+        super("Armor Display", "display", Category.player);
     }
 }
