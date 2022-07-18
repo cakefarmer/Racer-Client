@@ -19,8 +19,9 @@ public class fullbright extends Mod {
 }
     @Override
     public void onDisable() {
-        mc.options.getGamma().setValue(0.0);
-        super.onDisable();
+        if (mc.options != null) {
+            mc.options.getGamma().setValue(0.0);
+            super.onDisable();
+        }
     }
-
 }

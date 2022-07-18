@@ -69,6 +69,8 @@ public class ModuleManager {
 		modules.add(new keys());
 		modules.add(new armor());
 		modules.add(new fullbright());
+		modules.add(new fps());
+		modules.add(new coords());
 	}
 	
 	

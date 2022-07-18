@@ -29,10 +29,20 @@ public class Hud {
 	public static MinecraftClient mc = MinecraftClient.getInstance();
 
 	public static void render(MatrixStack matrices, float tickDelta) {
+		int sWidth = mc.getWindow().getScaledWidth();
+		int sHeight = mc.getWindow().getScaledHeight();
 		MinecraftClient.getInstance().textRenderer.drawWithShadow(matrices, "xracer", 10, 10, -1);
-		mc.textRenderer.drawWithShadow(matrices, "x: " + (int) mc.player.getX() + " y: " + (int) mc.player.getY() + " z: " + (int) mc.player.getZ(), 10, 20, -1);
-		mc.textRenderer.drawWithShadow(matrices, "Facing: " + mc.player.getHorizontalFacing(), 10, 30, -1);
-		mc.textRenderer.drawWithShadow(matrices, "FPS: " + mc.fpsDebugString.substring(0, 4).replace("f", "                    "), 10, 40, -1);
+		if(ModuleManager.instance.getModule("Coordinates").isEnabled()) {
+			mc.textRenderer.drawWithShadow(matrices, "x: " + (int) mc.player.getX() + " y: " + (int) mc.player.getY() + " z: " + (int) mc.player.getZ(), sWidth / 2 - (mc.textRenderer.getWidth("x: " + (int) mc.player.getX() + " y: " + (int) mc.player.getY() + " z: " + (int) mc.player.getZ()) / 2), 25, -1);
+		}
+		mc.textRenderer.drawWithShadow(matrices, "Facing: " + mc.player.getHorizontalFacing(), 10, 20, -1);
+
+		if(ModuleManager.instance.getModule("FPS").isEnabled()) {
+			matrices.push();
+			matrices.scale(1.2f, 1.2f,1.2f);
+			mc.textRenderer.drawWithShadow(matrices, "FPS: " + mc.fpsDebugString.substring(0, 4).replace("f", "                    "), 8, 50, -1);
+			matrices.pop();
+		}
 	}
 
 	static File file = new File(MinecraftClient.getInstance().runDirectory, "save");
