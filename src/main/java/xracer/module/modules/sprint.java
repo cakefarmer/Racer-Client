@@ -11,15 +11,21 @@ public class sprint extends Mod{
 		super("Toggle Sprint", "Toggles Sprint", Category.player);
 		this.setKey(GLFW.GLFW_KEY_R);
 	}
-	
+	@Override
 	public void onTick() {
-		if(mc.player.input.hasForwardMovement()) {
-			mc.player.setSprinting(true);
-			super.onTick();
+		if (this.isEnabled()) {
+			if (mc.player.input.hasForwardMovement()) {
+				if (mc.player != null) {
+					mc.player.setSprinting(true);
+					super.onTick();
+				}
+			}
 		}
 	}
-	
+	@Override
 	public void onDisable() {
-		mc.player.setSprinting(false);
+		if (mc.player != null) {
+			mc.player.setSprinting(false);
+		}
 	}
 }

@@ -7,10 +7,7 @@ import java.util.List;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import xracer.module.modules.armor;
-import xracer.module.modules.keys;
-import xracer.module.modules.radar;
-import xracer.module.modules.sprint;
+import xracer.module.modules.*;
 
 
 public class ModuleManager {
@@ -71,6 +68,7 @@ public class ModuleManager {
 		modules.add(new radar());
 		modules.add(new keys());
 		modules.add(new armor());
+		modules.add(new fullbright());
 	}
 	
 	
