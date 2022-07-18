@@ -27,9 +27,9 @@ public class Client implements ModInitializer{
 	  public static void save() {
 	        try {
 	            PrintWriter pw = new PrintWriter(file);
-	            pw.println(Hud.radar);
-	            pw.println(Hud.keystrokes);
-	            pw.println(Hud.armor);
+				for(Mod mod : ModuleManager.instance.getModules()){
+					pw.println(mod.isEnabled());
+				}
 	            pw.close();
 	          
 	        } catch (IOException e) {
@@ -40,13 +40,10 @@ public class Client implements ModInitializer{
 	    public void load() {
 	        try {
 	            BufferedReader reader = new BufferedReader(new FileReader(file));
-	            
-	         
-	                Hud.radar = Boolean.parseBoolean(reader.readLine());
-	                Hud.keystrokes = Boolean.parseBoolean(reader.readLine());
-	                Hud.armor = Boolean.parseBoolean(reader.readLine());
-	          
 
+				for(Mod mod : ModuleManager.instance.getModules()){
+					mod.setEnabled(Boolean.parseBoolean(reader.readLine()));
+				}
 	                
 	                
 	 

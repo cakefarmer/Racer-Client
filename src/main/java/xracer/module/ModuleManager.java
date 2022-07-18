@@ -1,5 +1,6 @@
 package xracer.module;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,8 +51,12 @@ public class ModuleManager {
 
 		for(Mod mod : ModuleManager.instance.getModules()){
 			TextRenderer t = MinecraftClient.getInstance().textRenderer;
+			int color = -1;
 			if(mod.getCategory() == category){
-				t.draw(matrices, mod.getName(), width / 2 + 20, height / 2 - 80 + i, -1);
+				if(mod.isEnabled()){
+					color = Color.green.getRGB();
+				}
+				t.draw(matrices, mod.getName(), width / 2 + 20, height / 2 - 80 + i, color);
 				mod.setX(20);
 				mod.setY(80 - i);
 				i = i+index;
