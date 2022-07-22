@@ -9,6 +9,7 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
 import xracer.module.modules.*;
+import xracer.module.modules.Menu;
 
 
 public class ModuleManager {
@@ -52,7 +53,6 @@ public class ModuleManager {
 			TextRenderer t = MinecraftClient.getInstance().textRenderer;
 			int color = -1;
 			int color2 = -1;
-
 			if(mod.getCategory() == category){
 				if(mod.isEnabled()){
 					color2 = huerainbow;
@@ -64,7 +64,6 @@ public class ModuleManager {
 					DrawableHelper.fill(matrices, width / 2 + 92, height / 2 - 72 + i, width / 2 + 100, height / 2 - 80 + i, 0xff303033);
 				}
 				if(mod.isEnabled()){
-
 					DrawableHelper.fill(matrices, width / 2 + 100, height / 2 - 72 + i, width / 2 + 108, height / 2 - 80 + i, 0xff303033);
 				}
 				//	if (mx > (width / 2 + 90) && mx < (width / 2 + 110) && my > (height / 2 - 70 + i) && my < (height / 2 - 82 + i)) {
@@ -85,6 +84,7 @@ public class ModuleManager {
 		modules.add(new fullbright());
 		modules.add(new fps());
 		modules.add(new coords());
+		modules.add(new Menu());
 
 	}
 	

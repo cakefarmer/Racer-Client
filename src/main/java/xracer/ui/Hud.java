@@ -109,11 +109,13 @@ public class Hud {
 			if(key == GLFW.GLFW_KEY_ESCAPE){
 				if(MenuGUI.isdisplayingmenu == true){
 					MenuGUI.isdisplayingmenu = false;
+					ModuleManager.instance.getModule("Menu").setEnabled(false);
 				}
 			}
 			if(key == GLFW.GLFW_KEY_RIGHT_SHIFT){
 				if(MenuGUI.isdisplayingmenu == true){
 					MenuGUI.isdisplayingmenu = false;
+					ModuleManager.instance.getModule("Menu").setEnabled(false);
 				}
 			}
 			if (key == GLFW.GLFW_KEY_W) {

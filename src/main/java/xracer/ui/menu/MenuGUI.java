@@ -36,7 +36,7 @@ public class MenuGUI extends Screen {
 
 	protected MenuGUI() {
 		super(Text.literal("MenuGUI"));
-		// TODO Auto-generated constructor stub
+
 	}
 
 
@@ -51,13 +51,29 @@ public class MenuGUI extends Screen {
 
 			if (mc.player != null) {
 				if (isdisplayingmenu == false) {
+					float rainbowhue = (System.currentTimeMillis() % 4000) / 4000f;
+					int huerainbow = Color.HSBtoRGB(rainbowhue, 1, 1);
 					DrawableHelper.fill(matrices, width / 2 - 40, height / 2 - 20, width / 2 + 40, height / 2 + 20, 0x50000000);
+					DrawableHelper.fill(matrices, width / 2 - 100, height / 2 - 15, width / 2 - 45, height / 2 + 15, 0x50000000);
+					mc.textRenderer.draw(matrices, "Layout", width / 2 - 90, height / 2 - (mc.textRenderer.fontHeight /2), -1);
+					DrawableHelper.fill(matrices, width / 2 - 43, height / 2 - 15, width / 2 - 45, height / 2 + 15, huerainbow);
+					DrawableHelper.fill(matrices, width / 2 - 100, height / 2 - 15, width / 2 - 98, height / 2 + 15, huerainbow);
+					DrawableHelper.fill(matrices, width / 2 - 100, height / 2 + 13, width / 2 - 45, height / 2 + 15, huerainbow);
+					DrawableHelper.fill(matrices, width / 2 - 100, height / 2 - 15, width / 2 - 45, height / 2 - 13, huerainbow);
+
+
+					DrawableHelper.fill(matrices, width / 2 - 40, height / 2 - 20, width / 2 + 40, height / 2 - 18, huerainbow);
+					DrawableHelper.fill(matrices,width / 2 + 38, height / 2 - 20, width / 2 + 40, height / 2 + 20, huerainbow);
+					DrawableHelper.fill(matrices,width / 2 - 40, height / 2 + 18, width / 2 + 40, height / 2 + 20, huerainbow);
+					DrawableHelper.fill(matrices,width / 2 - 40, height / 2 - 20, width / 2 - 38, height / 2 + 20, huerainbow);
 					mc.textRenderer.draw(matrices, "Menu", width / 2 - (mc.textRenderer.getWidth("Menu") / 2), height / 2 - (mc.textRenderer.fontHeight / 2), -1);
+
 				}
 			}
 		}
 			if (menu_button == false) {
 				isdisplayingmenu = true;
+				ModuleManager.instance.getModule("Menu").setEnabled(true);
 				mainmenu(matrices);
 			}
 		}
@@ -73,30 +89,31 @@ public class MenuGUI extends Screen {
 	int colorplayer = -1;
 
 	public void mainmenu(MatrixStack matrices) {
-		float rainbowhue = (System.currentTimeMillis() % 4000) / 4000f;
-		int huerainbow = Color.HSBtoRGB(rainbowhue, 1, 1);
-		//	DrawableHelper.fill(matrices, 200 , 50, width - 200, height-50, 0x44)
-			this.fillGradient(matrices,width,height, 0, 0, 0x301FFF69, 0x55000000);
+		if (ModuleManager.instance.getModule("Menu").isEnabled()) {
+			float rainbowhue = (System.currentTimeMillis() % 4000) / 4000f;
+
+			int huerainbow = Color.HSBtoRGB(rainbowhue, 1, 1);
+			//	DrawableHelper.fill(matrices, 200 , 50, width - 200, height-50, 0x44)
+			this.fillGradient(matrices, width, height, 0, 0, huerainbow, 0x55000000);
 			DrawableHelper.fill(matrices, width / 2 - 140, height / 2 + 100, width / 2 + 140, height / 2 - 100, 0xff303033);
 			DrawableHelper.fill(matrices, width / 2 + 138, height / 2 + 100, width / 2 + 140, height / 2 - 100, huerainbow);
 			DrawableHelper.fill(matrices, width / 2 - 140, height / 2 - 98, width / 2 + 140, height / 2 - 100, huerainbow);
-			DrawableHelper.fill(matrices, width / 2 - 140, height / 2 +100, width / 2 + 140, height / 2 + 98, huerainbow);
-			DrawableHelper.fill(matrices, width / 2 - 140, height / 2 + 100, width / 2 -138, height / 2 - 100, huerainbow);
+			DrawableHelper.fill(matrices, width / 2 - 140, height / 2 + 100, width / 2 + 140, height / 2 + 98, huerainbow);
+			DrawableHelper.fill(matrices, width / 2 - 140, height / 2 + 100, width / 2 - 138, height / 2 - 100, huerainbow);
 			mc.textRenderer.draw(matrices, "World", width / 2 - 120, height / 2 - 80, colorworld);
 			mc.textRenderer.draw(matrices, "Render", width / 2 - 120, height / 2 - 40, colorrender);
 			mc.textRenderer.draw(matrices, "Player", width / 2 - 120, height / 2, colorplayer);
 
 
-
 			if (world == true) {
-			//	mc.textRenderer.draw(matrices, "Radar", width / 2 + 20, height / 2 - 80, color_radar);
+				//	mc.textRenderer.draw(matrices, "Radar", width / 2 + 20, height / 2 - 80, color_radar);
 				ModuleManager.instance.drawCategory(matrices, Mod.Category.world, 20);
 				colorworld = huerainbow;
 				colorrender = -1;
 				colorplayer = -1;
 			}
 			if (render == true) {
-			//	mc.textRenderer.draw(matrices, "Keystrokes", width / 2 + 20, height / 2 - 80, color_keys);
+				//	mc.textRenderer.draw(matrices, "Keystrokes", width / 2 + 20, height / 2 - 80, color_keys);
 				ModuleManager.instance.drawCategory(matrices, Mod.Category.render, 20);
 				colorrender = huerainbow;
 				colorplayer = -1;
@@ -108,8 +125,9 @@ public class MenuGUI extends Screen {
 				colorplayer = huerainbow;
 				colorrender = -1;
 				colorworld = -1;
-			//	mc.textRenderer.draw(matrices, "Armor Display", width / 2 + 20, height / 2 - 80, color_armor);
+				//	mc.textRenderer.draw(matrices, "Armor Display", width / 2 + 20, height / 2 - 80, color_armor);
 			}
+		}
 	}
 
 	public boolean mouseClicked(double mx, double my, int button) {
@@ -150,18 +168,10 @@ public class MenuGUI extends Screen {
 		}
 
 		if (mx > (width / 2 - 40) && mx < (width / 2 + 40) && my > (height / 2 - 20) && my < (height / 2 + 20)) {
-
 			if (menu_button == true) {
 				menu_button = false;
-
 			}
 		}
-
-
-
 			return super.mouseClicked(mx, my, button);
 		}
-
-
-
 	}

@@ -13,7 +13,6 @@ public class fullbright extends Mod {
         if (this.isEnabled()) {
             ((ISimpleOption<Double>) (Object) mc.options.getGamma()).setValueUnrestricted(100.0d);
 
-
     }
 
 }
