@@ -69,18 +69,30 @@ public class Mod {
 	}
 
 	private int x;
+	private int x2;
 	private int y;
+	private int y2;
 
 	public int getX() {
 		return x;
 	}
 
-	public void setX(int xe){
-		x = xe;
+	public int getX2(){
+		return x2;
 	}
 
-	public void setY(int ye){
-		y = ye;
+	public int getY2() {
+		return y2;
+	}
+
+	public void setX(int x, int x2){
+		this.x = x;
+		this.x2 = x2;
+	}
+
+	public void setY(int y, int y2){
+		this.y = y;
+		this.y2 = y2;
 	}
 
 	public int getY() {
@@ -92,7 +104,7 @@ public class Mod {
 	private int key;
 	private Category category;
 	private boolean enabled;
-	protected MinecraftClient mc = MinecraftClient.getInstance();
+	protected static MinecraftClient mc = MinecraftClient.getInstance();
 	
 	public Mod(String name, String description, Category category) {
 		this.name = name;

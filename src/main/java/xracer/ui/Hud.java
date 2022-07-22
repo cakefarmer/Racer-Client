@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Comparator;
 import java.util.List;
 
+import net.minecraft.entity.Entity;
 import org.lwjgl.glfw.GLFW;
 
 import net.minecraft.client.MinecraftClient;
@@ -16,6 +17,7 @@ import xracer.Client;
 import xracer.module.Mod;
 import xracer.module.Mod.Category;
 import xracer.module.ModuleManager;
+import xracer.module.modules.armorhud;
 import xracer.ui.item.draw;
 import xracer.ui.menu.MenuGUI;
 
@@ -31,6 +33,7 @@ public class Hud {
 	public static void render(MatrixStack matrices, float tickDelta) {
 		int sWidth = mc.getWindow().getScaledWidth();
 		int sHeight = mc.getWindow().getScaledHeight();
+
 		MinecraftClient.getInstance().textRenderer.drawWithShadow(matrices, "xracer", 10, 10, -1);
 		if(ModuleManager.instance.getModule("Coordinates").isEnabled()) {
 			mc.textRenderer.drawWithShadow(matrices, "x: " + (int) mc.player.getX() + " y: " + (int) mc.player.getY() + " z: " + (int) mc.player.getZ(), sWidth / 2 - (mc.textRenderer.getWidth("x: " + (int) mc.player.getX() + " y: " + (int) mc.player.getY() + " z: " + (int) mc.player.getZ()) / 2), 25, -1);
@@ -82,6 +85,9 @@ public class Hud {
 	static int color1 = 0x44000000;
 	static int color2 = 0x44000000;
 	static int color3 = 0x44000000;
+
+
+
 
 	public static void drawKeys(MatrixStack matrices) {
 		if (ModuleManager.instance.getModule("Keystrokes").isEnabled() == true) {

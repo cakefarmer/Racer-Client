@@ -12,6 +12,7 @@ import net.minecraft.text.Text;
 import xracer.Client;
 import xracer.module.Mod;
 import xracer.module.ModuleManager;
+import xracer.module.settings.ToggleButton;
 import xracer.ui.Hud;
 
 
@@ -74,35 +75,37 @@ public class MenuGUI extends Screen {
 	public void mainmenu(MatrixStack matrices) {
 		float rainbowhue = (System.currentTimeMillis() % 4000) / 4000f;
 		int huerainbow = Color.HSBtoRGB(rainbowhue, 1, 1);
-		//	DrawableHelper.fill(matrices, 200 , 50, width - 200, height-50, 0x44);
+		//	DrawableHelper.fill(matrices, 200 , 50, width - 200, height-50, 0x44)
 			this.fillGradient(matrices,width,height, 0, 0, 0x301FFF69, 0x55000000);
-			DrawableHelper.fill(matrices, width / 2 - 140, height / 2 + 100, width / 2 + 140, height / 2 - 100, 0x44000000);
-			DrawableHelper.fill(matrices, width / 2 + 135, height / 2 + 100, width / 2 + 140, height / 2 - 100, 0xff1FFF69);
-			DrawableHelper.fill(matrices, width / 2 - 140, height / 2 - 95, width / 2 + 140, height / 2 - 100, 0xff1FFF69);
-			DrawableHelper.fill(matrices, width / 2 - 140, height / 2 +100, width / 2 + 140, height / 2 +95, 0xff1FFF69);
-			DrawableHelper.fill(matrices, width / 2 - 140, height / 2 + 100, width / 2 -135, height / 2 - 100, 0xff1FFF69);
+			DrawableHelper.fill(matrices, width / 2 - 140, height / 2 + 100, width / 2 + 140, height / 2 - 100, 0xff303033);
+			DrawableHelper.fill(matrices, width / 2 + 138, height / 2 + 100, width / 2 + 140, height / 2 - 100, huerainbow);
+			DrawableHelper.fill(matrices, width / 2 - 140, height / 2 - 98, width / 2 + 140, height / 2 - 100, huerainbow);
+			DrawableHelper.fill(matrices, width / 2 - 140, height / 2 +100, width / 2 + 140, height / 2 + 98, huerainbow);
+			DrawableHelper.fill(matrices, width / 2 - 140, height / 2 + 100, width / 2 -138, height / 2 - 100, huerainbow);
 			mc.textRenderer.draw(matrices, "World", width / 2 - 120, height / 2 - 80, colorworld);
 			mc.textRenderer.draw(matrices, "Render", width / 2 - 120, height / 2 - 40, colorrender);
-			mc.textRenderer.draw(matrices, "Player", width / 2 - 120, height / 2 - 0, colorplayer);
+			mc.textRenderer.draw(matrices, "Player", width / 2 - 120, height / 2, colorplayer);
+
+
 
 			if (world == true) {
 			//	mc.textRenderer.draw(matrices, "Radar", width / 2 + 20, height / 2 - 80, color_radar);
-				ModuleManager.instance.drawCategory(matrices, Mod.Category.world, 15);
-				colorworld = Color.green.getRGB();
+				ModuleManager.instance.drawCategory(matrices, Mod.Category.world, 20);
+				colorworld = huerainbow;
 				colorrender = -1;
 				colorplayer = -1;
 			}
 			if (render == true) {
 			//	mc.textRenderer.draw(matrices, "Keystrokes", width / 2 + 20, height / 2 - 80, color_keys);
-				ModuleManager.instance.drawCategory(matrices, Mod.Category.render, 15);
-				colorrender = Color.green.getRGB();
+				ModuleManager.instance.drawCategory(matrices, Mod.Category.render, 20);
+				colorrender = huerainbow;
 				colorplayer = -1;
 				colorworld = -1;
 
 			}
 			if (player == true) {
-				ModuleManager.instance.drawCategory(matrices, Mod.Category.player, 15);
-				colorplayer = Color.green.getRGB();
+				ModuleManager.instance.drawCategory(matrices, Mod.Category.player, 20);
+				colorplayer = huerainbow;
 				colorrender = -1;
 				colorworld = -1;
 			//	mc.textRenderer.draw(matrices, "Armor Display", width / 2 + 20, height / 2 - 80, color_armor);
@@ -113,14 +116,15 @@ public class MenuGUI extends Screen {
 	//width / 2 + 20, height / 2 - 80
 		for(Mod m : ModuleManager.instance.getModules()) {
 			if (m.getCategory() == currentCategory) {
-				if (mx > (width / 2 + m.getX()) && mx < (width / 2 + m.getX() + textRenderer.getWidth(m.getName())) && my > (height / 2 - m.getY() - 1) && my < (height / 2 - m.getY() + mc.textRenderer.fontHeight)) {
+				if (mx > (width / 2 + m.getX()) && mx < (width / 2 + m.getX2()) && my > (height / 2 - m.getY2()) && my < (height / 2 - m.getY())) {
+			//	if (mx > (width / 2 + 90) && mx < (width / 2 + 110) && my > (height / 2 - 82) && my < (height / 2 - 70)) {
 					m.toggle();
 					Client.INSTANCE.LOGGER.info("Mod Clicked " + m.getName() + " | " + m.getY());
 				}
 			}
 		}
 
-		if(mx > (width / 2 - 122) && mx <  (width / 2 - 120 + textRenderer.getWidth("render")) && my > (height / 2 - 41) && my < (height /2 - 37 + mc.textRenderer.fontHeight)) {
+		if(mx > (width / 2 - 122) && mx <  (width / 2 - 120 + textRenderer.getWidth("render")) && my > (height / 2 - 41) && my < (height /2 - 41 + mc.textRenderer.fontHeight)) {
 			world = false;
 			render = true;
 			player = false;
@@ -128,7 +132,7 @@ public class MenuGUI extends Screen {
 			Client.INSTANCE.LOGGER.info("ez");
 			colorrender = Color.green.getRGB();
 		}
-		if(mx > (width / 2 - 122) && mx <  (width / 2 - 120 + textRenderer.getWidth("world")) && my > (height / 2 - 81) && my < (height /2 - 77 + mc.textRenderer.fontHeight)) {
+		if(mx > (width / 2 - 122) && mx <  (width / 2 - 120 + textRenderer.getWidth("world")) && my > (height / 2 - 81) && my < (height /2 - 79 + mc.textRenderer.fontHeight)) {
 			world = true;
 			render = false;
 			player = false;
@@ -136,7 +140,7 @@ public class MenuGUI extends Screen {
 			Client.INSTANCE.LOGGER.info("ez");
 			colorworld = Color.green.getRGB();
 		}
-		if(mx > (width / 2 - 122) && mx <  (width / 2 - 120 + textRenderer.getWidth("player")) && my > (height / 2 - 1) && my < (height /2 + mc.textRenderer.fontHeight)) {
+		if(mx > (width / 2 - 122) && mx <  (width / 2 - 120 + textRenderer.getWidth("player")) && my > (height / 2 - 1) && my < (height /2 +mc.textRenderer.fontHeight)) {
 			world = false;
 			render = false;
 			player = true;
