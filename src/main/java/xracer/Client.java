@@ -40,15 +40,9 @@ public class Client implements ModInitializer{
 	    public void load() {
 	        try {
 	            BufferedReader reader = new BufferedReader(new FileReader(file));
-
 				for(Mod mod : ModuleManager.instance.getModules()){
 					mod.setEnabled(Boolean.parseBoolean(reader.readLine()));
 				}
-	                
-	                
-	 
-	                
-	            
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
@@ -62,24 +56,6 @@ public class Client implements ModInitializer{
 	public void onInitialize(){
 		load();
 		LOGGER.info("XRACER EZ");
-
-		if(Hud.armor == true) {
-			MenuGUI.color_armor = 0x997fff00;
-		}else {
-			MenuGUI.color_armor = -1;
-		}
-		
-		if(Hud.keystrokes == true) {
-			MenuGUI.color_keys = 0x997fff00;
-		}else {
-			MenuGUI.color_keys = -1;
-		}
-		
-		if(Hud.radar == true) {
-			MenuGUI.color_radar = 0x997fff00;
-		}else {
-			MenuGUI.color_radar = -1;
-		}
 	}
 	 
 

@@ -73,7 +73,7 @@ public class MenuGUI extends Screen {
 		}
 			if (menu_button == false) {
 				isdisplayingmenu = true;
-				ModuleManager.instance.getModule("Menu").setEnabled(true);
+
 				mainmenu(matrices);
 			}
 		}
@@ -169,6 +169,7 @@ public class MenuGUI extends Screen {
 
 		if (mx > (width / 2 - 40) && mx < (width / 2 + 40) && my > (height / 2 - 20) && my < (height / 2 + 20)) {
 			if (menu_button == true) {
+				ModuleManager.instance.getModule("Menu").setEnabled(true);
 				menu_button = false;
 			}
 		}
